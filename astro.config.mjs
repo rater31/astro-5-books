@@ -9,7 +9,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   output:'server',
   integrations: [tailwind()],
-  adapter: vercel(),
+ 
 
   env:{
     schema:{
@@ -17,6 +17,5 @@ export default defineConfig({
       SCORE_API_ENDPOINT: envField.string({ context: 'server', access: 'public' }),
     }
   },
-
-  adapter: vercel()
+  adapter: vercel(),
 });
