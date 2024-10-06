@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const books = await getCollection('books')
+
+export const prerender = true
+---
+
+<Layout title="Welcome to Astro.">
+	<h1 class="text-white text-6xl text-center">Reading Books</h1>
+	<article class="mt-28">
+		<section class="grid grid-cols-2 gap-6  text-white">
+			{
+				books.map((book => {
+					const {slug, data} =book
+					const {title, author, description, buy, imagen} =data
+					return(
+						<article class="flex flex-col-2 justify-center">
+							<a href={`libro/${slug}`} class="mb-2 transition hover:scale-110">
+							<img src={`src/img/${imagen}`} transition:name={`img-${slug}`} alt={title} class="w-52  rounded-xl"/>
+							</a>
+							<div class="w-[25%] ml-5">
+
+								<h2>{title}</h2>
+								<span>{description}</span>
+
+							</div>
+						</article>
+					)
+				}))
+			}
+		</section>
+	</article>
+</Layout>
