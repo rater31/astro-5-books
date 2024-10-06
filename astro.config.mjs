@@ -17,5 +17,5 @@ export default defineConfig({
     }
   },
 
-  adapter: vercel({edgeMiddleware: true,}),
+  adapter: vercelServerless(),
 });
